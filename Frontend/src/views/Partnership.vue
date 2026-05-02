@@ -434,7 +434,7 @@ onMounted(() => {
 
 /* ── CTA ── */
 .cta-banner {
-  background: linear-gradient(135deg, #1a1a2e 0%, #1e3a6e 100%);
+  background: linear-gradient(135deg, #166995 0%, #065b82 100%);
   border-radius: 20px; padding: 48px 52px;
   display: flex; align-items: center; justify-content: space-between;
   gap: 32px; position: relative; overflow: hidden;

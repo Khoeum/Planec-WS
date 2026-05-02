@@ -62,16 +62,20 @@
 
                 <!-- Quick Links -->
                 <div class="col">
-                    <h3 class="col-head"><span class="col-head__bar"></span>Quick Links</h3>
+                    <h3 class="col-head">
+                        <span class="col-head__bar"></span>
+                        Quick Links
+                    </h3>
+
                     <ul class="link-list">
-                        <li v-for="item in navLinks" :key="item">
-                            <a href="#" class="footer-link">
+                        <li v-for="item in navLinks" :key="item.name">
+                            <router-link :to="item.path" class="footer-link">
                                 <svg class="link-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none"
                                     stroke="currentColor" stroke-width="2.5">
                                     <polyline points="9 18 15 12 9 6" />
                                 </svg>
-                                {{ item }}
-                            </a>
+                                {{ item.name }}
+                            </router-link>
                         </li>
                     </ul>
                 </div>
@@ -197,6 +201,7 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import { RouterLink } from 'vue-router'
 
 const email = ref('')
 const subscribed = ref(false)
@@ -204,7 +209,14 @@ const focused = ref(false)
 
 const year = computed(() => new Date().getFullYear())
 
-const navLinks = ['Home', 'About Us', 'Events', 'Partnership', 'Contact Us', 'Shop']
+const navLinks = [
+    { name: 'Home', path: '/' },
+    { name: 'About Us', path: '/about' },
+    { name: 'Events', path: '/event' },
+    { name: 'Partnership', path: '/partnership' },
+    { name: 'Contact Us', path: '/contact' },
+    { name: 'Shop', path: '/shop' }
+]
 const products = ['Structured Cabling Systems', 'LAN Switches', 'Wireless LAN', 'Network Management', 'IP Telephony', 'Media Conversion']
 
 function subscribe() {

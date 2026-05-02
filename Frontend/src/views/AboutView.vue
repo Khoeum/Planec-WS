@@ -247,7 +247,7 @@
 }
 .info-card::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
-  background: linear-gradient(90deg, #0b3d5e, #0d6e6e);
+  background: linear-gradient(90deg, #045fc6, #0d6e6e);
   border-radius: 16px 16px 0 0;
 }
 .info-card:hover { box-shadow: 0 12px 40px rgba(13,110,110,0.1); transform: translateY(-4px); }
@@ -257,13 +257,13 @@
 }
 .card-icon {
   width: 32px; height: 32px; flex-shrink: 0;
-  color: #0b3d5e;
+  color: #0176b0;
 }
 .card-icon svg { width: 32px; height: 32px; }
 .card-icon-row h3 {
   font-family: 'Playfair Display', serif;
   font-size: 1.2rem; font-weight: 700;
-  color: #0b3d5e; margin: 0;
+  color: #0176b0; margin: 0;
 }
 .info-card p {
   font-size: 0.92rem; line-height: 1.85; color: #555; margin: 0;
@@ -318,7 +318,7 @@
   width: 48px; height: 48px;
   background: #e8f8f0; border-radius: 12px;
   display: flex; align-items: center; justify-content: center;
-  color: #0b3d5e; margin-bottom: 16px;
+  color: #0176b0; margin-bottom: 16px;
 }
 .value-icon svg { width: 24px; height: 24px; }
 .value-item h4 {

@@ -518,51 +518,84 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
+
+// ══════════════════════════════════════════════════════════════════
+//  ⚙️  EMAILJS CONFIGURATION — replace these 3 values
+//  1. Sign up free at https://emailjs.com
+//  2. Add an Email Service (Gmail / Outlook / etc.) → copy Service ID
+//  3. Create an Email Template              → copy Template ID
+//     Required template variables (use exactly these names):
+//       {{to_email}}  {{order_id}}  {{order_date}}
+//       {{customer_name}}  {{phone}}  {{telegram}}
+//       {{email}}  {{location}}  {{products_list}}
+//       {{grand_total}}  {{notes}}
+//  4. Account → API Keys                    → copy Public Key
+// ══════════════════════════════════════════════════════════════════
+const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID'   // e.g. 'service_abc123'
+const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID'  // e.g. 'template_xyz789'
+const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY'   // e.g. 'aBcDeFgHiJkLmNoPq'
+const SELLER_EMAIL        = 'cpnkhoeumvd030005@gmail.com'
+// ══════════════════════════════════════════════════════════════════
+
+// Load EmailJS SDK dynamically on mount
+onMounted(() => {
+  if (!document.getElementById('emailjs-sdk')) {
+    const script = document.createElement('script')
+    script.id  = 'emailjs-sdk'
+    script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js'
+    script.onload = () => {
+      window.emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY })
+    }
+    document.head.appendChild(script)
+  } else if (window.emailjs) {
+    window.emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY })
+  }
+})
 
 const products = ref([
   {
     id: 1,
-    name: 'GS-2024P Ultra PoE Switch',
-    category: 'PoE Switch',
+    name: 'Professional Tools Tester',
+    category: 'Planet',
     type: 'Managed Switch',
     description: '24-port gigabit managed PoE switch with 95W PoH support and intelligent power management.',
-    price: 1299,
+    price: 2843.75,
     discount: 10,
     inStock: true,
     popular: true,
     specs: ['24-Port', 'PoH 95W', 'Managed', 'Gigabit'],
-    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=220&fit=crop&auto=format',
+    image: 'https://planec.com.kh/wp-content/uploads/2021/04/softing-tools-200x200.png',
   },
   {
     id: 2,
-    name: 'NS-10G-48 Core Switch',
-    category: 'Core Switch',
+    name: 'Network Rack',
+    category: 'Finen',
     type: 'L3 Managed',
     description: '48-port 10G uplink managed switch ideal for enterprise backbone networks.',
-    price: 3499,
+    price: 967.50,
     discount: null,
     inStock: true,
     popular: true,
     specs: ['48-Port', '10G Uplink', 'L3 Managed', 'SFP+'],
-    image: 'https://images.unsplash.com/photo-1551703599-6b3e8379aa8c?w=400&h=220&fit=crop&auto=format',
+    image: 'https://planec.com.kh/wp-content/uploads/2020/03/network-rack-e1584178170665.jpg',
   },
   {
     id: 3,
-    name: 'CAT6A Shielded Cable (305m)',
+    name: 'Wireless LAN',
     category: 'Cabling',
     type: 'Copper Bulk',
     description: 'Premium shielded CAT6A cable rated for 10G transmission up to 100m with EMI protection.',
-    price: 189,
+    price: 152.50,
     discount: 5,
     inStock: true,
     popular: false,
     specs: ['CAT6A', 'Shielded', '10Gbps', '305m Spool'],
-    image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=400&h=220&fit=crop&auto=format',
+    image: 'https://planec.com.kh/wp-content/uploads/2020/03/Wireless-LAN-e1584177128469.jpg',
   },
   {
     id: 4,
-    name: 'LCD-TC7 Touch Control Panel',
+    name: 'Media Conversion',
     category: 'Control Panel',
     type: 'PoE Controller',
     description: '7-inch touch LCD panel for intelligent PoE management, real-time power monitoring.',
@@ -571,11 +604,11 @@ const products = ref([
     inStock: false,
     popular: true,
     specs: ['7" Touch LCD', 'PoE Control', 'Real-time Monitor'],
-    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=220&fit=crop&auto=format',
+    image: 'https://planec.com.kh/wp-content/uploads/2020/03/Industrail-Media-Conversation-e1584177366363.jpg',
   },
   {
     id: 5,
-    name: 'WP-AX3000 Wi-Fi 6 AP',
+    name: 'Layer 3 Chassis',
     category: 'Wireless',
     type: 'Access Point',
     description: 'Tri-band Wi-Fi 6 access point with MU-MIMO, ideal for high-density deployments.',
@@ -584,11 +617,11 @@ const products = ref([
     inStock: true,
     popular: true,
     specs: ['Wi-Fi 6', 'AX3000', 'MU-MIMO', 'PoE Powered'],
-    image: 'https://images.unsplash.com/photo-1606904825846-647eb07f5be2?w=400&h=220&fit=crop&auto=format',
+    image: 'https://planec.com.kh/wp-content/uploads/2020/02/box_XGS3-42000Rv2-e1581221463218.jpg',
   },
   {
     id: 6,
-    name: 'SFP-10G-SR Module',
+    name: 'Cassis Managed Gigabit Media',
     category: 'Transceiver',
     type: 'MMF',
     description: '10G SFP+ short-range multimode fiber module, compatible with major switch brands.',
@@ -597,33 +630,33 @@ const products = ref([
     inStock: false,
     popular: false,
     specs: ['10G SFP+', '850nm', 'MMF', '300m Range'],
-    image: 'https://images.unsplash.com/photo-1581092335397-9583eb92d232?w=400&h=220&fit=crop&auto=format',
+    image: 'https://planec.com.kh/wp-content/uploads/2020/03/box_GST-80X-e1584180887714.jpg',
   },
   {
     id: 7,
-    name: 'RS-48P Industrial PoE',
+    name: 'Structured Cabling Systems',
     category: 'PoE Switch',
     type: 'Industrial',
     description: '48-port industrial-grade PoE switch built for harsh environments, DIN rail mount.',
-    price: 2199,
+    price: 274.88,
     discount: 8,
     inStock: true,
     popular: false,
     specs: ['48-Port', 'Industrial', 'DIN Rail', 'IP40'],
-    image: 'https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=400&h=220&fit=crop&auto=format',
+    image: 'https://planec.com.kh/wp-content/uploads/2019/09/cat6.jpg',
   },
   {
     id: 8,
-    name: 'FO-SC/APC Patch Cord 3m',
+    name: 'Wireless Management Software',
     category: 'Fiber Optic',
     type: 'Single-mode',
     description: 'Single-mode SC/APC to SC/APC duplex fiber patch cord, low insertion loss.',
-    price: 12,
+    price: 153.75,
     discount: null,
     inStock: true,
     popular: false,
     specs: ['SC/APC', 'Duplex', 'SM', '3m'],
-    image: 'https://images.unsplash.com/photo-1567789884554-0b844b597180?w=400&h=220&fit=crop&auto=format',
+    image: 'https://planec.com.kh/wp-content/uploads/2020/03/Smart-AP-Control_Box_L-e1584263819471.jpg',
   },
   {
     id: 9,
@@ -852,24 +885,56 @@ function nextStep() {
 
 const loadingMessages = ['Sending your order to our team…', 'Verifying product availability…', 'Preparing your confirmation…', 'Almost done, hang tight!']
 
+// ══════════════════════════════════════════════════════════════════
+//  EMAIL SENDING — uses EmailJS (no backend required)
+//  The template on EmailJS should have these variables:
+//    {{to_email}} {{order_id}} {{order_date}} {{customer_name}}
+//    {{phone}} {{telegram}} {{email}} {{location}}
+//    {{products_list}} {{grand_total}} {{notes}}
+// ══════════════════════════════════════════════════════════════════
 async function sendEmailToSeller(orderData) {
-  const sellerEmail = 'orders@planec.com.kh'
-  const subject = `NEW ORDER #${orderData.orderId} from ${orderData.customerName}`
-  let body = `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`
-  body += `              PLANEC NEW ORDER\n`
-  body += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n`
-  body += `Order ID: ${orderData.orderId}\nDate: ${orderData.orderDate}\n\n`
-  body += `CUSTOMER\nName: ${orderData.customerName}\nPhone: ${orderData.phone}\nTelegram: ${orderData.telegram}\n`
-  if (orderData.email) body += `Email: ${orderData.email}\n`
-  body += `Location: ${orderData.location}\n\n`
-  body += `PRODUCTS\n`
-  orderData.items.forEach(item => {
-    body += `- ${item.name} × ${item.qty} @ $${discountedPrice(item)} = $${(discountedPrice(item) * item.qty).toFixed(2)}\n`
-  })
-  body += `\nGRAND TOTAL: $${orderData.total}\n`
-  if (orderData.notes) body += `\nNotes: ${orderData.notes}\n`
-  const mailtoLink = `mailto:${sellerEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
-  window.open(mailtoLink, '_blank')
+  // Build a readable product list string for the email body
+  const productsList = orderData.items
+    .map(item => `• ${item.name} × ${item.qty}  →  $${(discountedPrice(item) * item.qty).toFixed(2)}`)
+    .join('\n')
+
+  const templateParams = {
+    to_email:      SELLER_EMAIL,
+    order_id:      orderData.orderId,
+    order_date:    orderData.orderDate,
+    customer_name: orderData.customerName,
+    phone:         orderData.phone,
+    telegram:      orderData.telegram,
+    email:         orderData.email || '—',
+    location:      orderData.location,
+    products_list: productsList,
+    grand_total:   `$${orderData.total}`,
+    notes:         orderData.notes || '—',
+  }
+
+  // Wait for the SDK to be available (it's loaded async)
+  let attempts = 0
+  while (!window.emailjs && attempts < 20) {
+    await new Promise(r => setTimeout(r, 200))
+    attempts++
+  }
+
+  if (!window.emailjs) {
+    console.error('EmailJS SDK failed to load.')
+    return
+  }
+
+  try {
+    const response = await window.emailjs.send(
+      EMAILJS_SERVICE_ID,
+      EMAILJS_TEMPLATE_ID,
+      templateParams
+    )
+    console.log('✅ Order email sent to seller:', response.status, response.text)
+  } catch (err) {
+    // Order still shows success to customer — log the error silently
+    console.error('❌ EmailJS send failed:', err)
+  }
 }
 
 function submitOrder() {
@@ -883,18 +948,20 @@ function submitOrder() {
     orderId.value = 'PLC-' + Math.random().toString(36).substring(2, 8).toUpperCase()
     const now = new Date()
     orderDate.value = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) + ' ' + now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })
+
     await sendEmailToSeller({
-      orderId: orderId.value,
-      orderDate: orderDate.value,
+      orderId:      orderId.value,
+      orderDate:    orderDate.value,
       customerName: `${form.value.firstName} ${form.value.lastName}`,
-      phone: form.value.phone,
-      telegram: form.value.telegram,
-      email: form.value.email,
-      location: form.value.location,
-      items: cartItems.value,
-      total: cartTotal.value,
-      notes: form.value.notes,
+      phone:        form.value.phone,
+      telegram:     form.value.telegram,
+      email:        form.value.email,
+      location:     form.value.location,
+      items:        cartItems.value,
+      total:        cartTotal.value,
+      notes:        form.value.notes,
     })
+
     showOrderModal.value = false
     showThankYou.value = true
   }, 3500)
