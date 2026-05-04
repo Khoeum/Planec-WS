@@ -154,7 +154,6 @@
                 :style="`background:${getBrandColor(product.brand).bg};color:${getBrandColor(product.brand).fg}`">
                 {{ product.brand }}
               </div>
-              <div class="dsrp-badge">DSRP</div>
               <div class="card-image-inner">
                 <img v-if="product.image" :src="product.image" :alt="product.name" class="product-img"
                   @error="e => e.target.style.display = 'none'" />
@@ -186,7 +185,7 @@
               <h3 class="card-title">{{ product.name }}</h3>
               <p v-if="product.description" class="card-desc">{{ product.description }}</p>
 
-              <div class="card-specs">
+              <!-- <div class="card-specs">
                 <div class="spec-row">
                   <div class="spec-cell">
                     <span class="spec-label">Unit</span>
@@ -201,11 +200,11 @@
                     <span class="spec-value discount">{{ product.discount }}%</span>
                   </div>
                 </div>
-              </div>
+              </div> -->
 
               <div class="card-footer">
                 <div class="price-block">
-                  <span class="list-price">List: <s>${{ fmt(product.list) }}</s></span>
+                  <!-- <span class="list-price">List: <s>${{ fmt(product.list) }}</s></span> -->
                   <span class="sell-price">${{ fmt(sellPrice(product)) }}</span>
                 </div>
                 <button class="btn-detail" @click.stop="openDetail(product)">
@@ -458,18 +457,18 @@ const staticProducts = [
   { id: 13, brand: 'Planet', cat: 'IP telephony', partNo: 'VIP-2140PT', name: '4-Port SIP IP Phone Adapter with PoE, 2 FXS + 2 FXO', description: 'VoIP adapter supporting SIP protocol with PoE power input.', unit: 'pcs', qty: 1, list: 145.00, discount: 15, image: '' },
   { id: 14, brand: 'Planet', cat: 'Media conversion', partNo: 'FT-802S35', name: 'Fast Ethernet Media Converter, 10/100Base-TX to 100Base-FX, Single-Mode, SC, 35 km', description: '100 Mbps copper-to-fibre media converter, single-mode 35 km.', unit: 'pcs', qty: 1, list: 68.00, discount: 15, image: '' },
   /* ── Tyco ── */
-  { id: 15, brand: 'Tyco', cat: 'Security', partNo: 'T-REX-2W', name: 'T-Rex Dual Technology PIR & Microwave Motion Detector, 12 m × 12 m', description: 'Indoor dual-tech detector with anti-masking, 12 × 12 m coverage.', unit: 'pcs', qty: 1, list: 58.00, discount: 18, image: '' },
-  { id: 16, brand: 'Tyco', cat: 'Security', partNo: 'DS-150i', name: 'Hardwire Door/Window Contact with LED Indicator, Surface Mount, White', description: 'Surface-mount magnetic contact with built-in LED status indicator.', unit: 'pcs', qty: 1, list: 12.50, discount: 18, image: '' },
+  { id: 15, brand: 'Tyco', cat: 'Security', partNo: 'T-REX-2W', name: 'T-Rex Dual Technology PIR & Microwave Motion Detector, 12 m × 12 m', description: 'Indoor dual-tech detector with anti-masking, 12 × 12 m coverage.', unit: 'pcs', qty: 1, list: 58.00, discount: 18, image: 'https://planec.com.kh/wp-content/uploads/2020/02/box_VIP-1120PT-e1581842532365.jpg' },
+  { id: 16, brand: 'Tyco', cat: 'Security', partNo: 'DS-150i', name: 'Hardwire Door/Window Contact with LED Indicator, Surface Mount, White', description: 'Surface-mount magnetic contact with built-in LED status indicator.', unit: 'pcs', qty: 1, list: 12.50, discount: 18, image: 'https://planec.com.kh/wp-content/uploads/2020/02/box_WDAP-C7200E-e1581841599837.jpg' },
   /* ── Johnson Controls ── */
-  { id: 17, brand: 'Johnson Controls', cat: 'Fire alarm', partNo: 'MS-9200UDLS', name: 'FireFinder XLS Analog Addressable Fire Alarm Control Panel, 198 Points', description: 'Addressable FACP supporting up to 198 devices with UDP/LCD display.', unit: 'pcs', qty: 1, list: 1250.00, discount: 15, image: '' },
+  { id: 17, brand: 'Johnson Controls', cat: 'Fire alarm', partNo: 'MS-9200UDLS', name: 'FireFinder XLS Analog Addressable Fire Alarm Control Panel, 198 Points', description: 'Addressable FACP supporting up to 198 devices with UDP/LCD display.', unit: 'pcs', qty: 1, list: 1250.00, discount: 15, image: 'https://planec.com.kh/wp-content/uploads/2020/02/box_WAPC-5002-e1581840815608.jpg' },
   /* ── Kantech ── */
-  { id: 18, brand: 'Kantech', cat: 'Access control', partNo: 'E3-DOOR', name: 'Kantech E3 Door Controller with IP Connectivity and 5,000 Card Capacity', description: 'Single-door IP controller, 5 000-card onboard memory, PoE-compatible.', unit: 'pcs', qty: 1, list: 380.00, discount: 12, image: '' },
+  { id: 18, brand: 'Kantech', cat: 'Access control', partNo: 'E3-DOOR', name: 'Kantech E3 Door Controller with IP Connectivity and 5,000 Card Capacity', description: 'Single-door IP controller, 5 000-card onboard memory, PoE-compatible.', unit: 'pcs', qty: 1, list: 380.00, discount: 12, image: 'https://planec.com.kh/wp-content/uploads/2020/03/box_GT-90X-e1584261168227.jpg' },
   /* ── Nittan ── */
   { id: 19, brand: 'Nittan', cat: 'Fire detection', partNo: 'EV-C', name: 'Evolution Analogue Addressable Optical Smoke Detector', description: 'Addressable optical detector for early warning smoke detection.', unit: 'pcs', qty: 1, list: 35.00, discount: 15, image: '' },
   /* ── Nexans ── */
-  { id: 20, brand: 'Nexans', cat: 'Structured cabling', partNo: 'LANmark-7A', name: 'LANmark-7A 10G Category 7A LSZH Installation Cable, 500 m Drum', description: 'Cat7A LSZH screened installation cable for 10G backbone runs.', unit: 'Box', qty: 1, list: 420.00, discount: 18, image: '' },
+  { id: 20, brand: 'Nexans', cat: 'Structured cabling', partNo: 'LANmark-7A', name: 'LANmark-7A 10G Category 7A LSZH Installation Cable, 500 m Drum', description: 'Cat7A LSZH screened installation cable for 10G backbone runs.', unit: 'Box', qty: 1, list: 420.00, discount: 18, image: 'https://planec.com.kh/wp-content/uploads/2020/03/box_GST-80X-e1584180887714.jpg' },
   /* ── Simplex ── */
-  { id: 21, brand: 'Simplex', cat: 'Fire alarm', partNo: '4904-9101', name: 'TrueAlert ES Notification Appliance, Ceiling, Red, 24 V, Speaker/Strobe', description: 'Addressable speaker-strobe notification appliance, ceiling mount, red.', unit: 'pcs', qty: 1, list: 89.00, discount: 15, image: '' },
+  { id: 21, brand: 'Simplex', cat: 'Fire alarm', partNo: '4904-9101', name: 'TrueAlert ES Notification Appliance, Ceiling, Red, 24 V, Speaker/Strobe', description: 'Addressable speaker-strobe notification appliance, ceiling mount, red.', unit: 'pcs', qty: 1, list: 89.00, discount: 15, image: 'https://planec.com.kh/wp-content/uploads/2020/03/box_MC-1610MRv2-e1584178815283.jpg' },
   /* ── Finen ── */
   { id: 22, brand: 'Finen', cat: 'Network management', partNo: 'FN-SFP-GE-SX', name: 'Gigabit SX SFP Transceiver, 850 nm, LC Duplex, MMF, up to 550 m', description: '1000Base-SX SFP module for multi-mode fibre, 550 m reach.', unit: 'pcs', qty: 1, list: 22.00, discount: 15, image: '' },
   /* ── Softing ── */
@@ -1147,18 +1146,6 @@ const showToastMsg = (msg) => {
   padding: 4px 10px;
   border-radius: 6px;
   letter-spacing: 0.03em;
-}
-
-.dsrp-badge {
-  position: absolute;
-  top: 12px;
-  right: 52px;
-  font-size: 10px;
-  font-weight: 600;
-  padding: 4px 8px;
-  border-radius: 6px;
-  background: #EAF3DE;
-  color: #27500A;
 }
 
 .wishlist-btn {
