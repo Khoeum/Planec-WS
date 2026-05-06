@@ -88,7 +88,7 @@
     <section class="py-20 bg-white">
       <div class="max-w-6xl mx-auto px-6">
         <div class="text-center mb-14">
-          <h2 class="text-4xl font-bold mb-3" style="color:#0176b0;">Our Partners</h2>
+          <h2 class="text-4xl font-bold mb-3" style="color:#0176b0;">Our Partners & Our Customers</h2>
           <div class="w-14 h-1 mx-auto rounded" style="background-color:#1a5f7a;"></div>
           <p class="text-gray-500 mt-3">Authorised distributor of leading global networking brands</p>
         </div>

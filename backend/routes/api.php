@@ -13,12 +13,3 @@ use App\Http\Controllers\ProductController;
 
 // ── Orders ──
 Route::post('/orders', [OrderController::class, 'store']);
-
-// ── Contact (if you have it) ──
-// Route::post('/contact', [ContactController::class, 'store']);
-
-// ── Products (if you have it) ──
-// Route::get('/products', [ProductController::class, 'index']);
-
-
-

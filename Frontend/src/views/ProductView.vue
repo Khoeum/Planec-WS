@@ -447,15 +447,15 @@ const staticProducts = [
   { id: 4, brand: 'Siemon', cat: 'Structured cabling', partNo: 'PC6-001M-A06LS', name: 'Copper Patch Cord, RJ45, RJ45, Category 6, UTP, T568A/B, Stranded, LSOH-1, Blue Cable, Blue Boot, 1 Meter, 24 AWG', description: 'Cat6 stranded LSOH patch cord, 1 m, blue.', unit: 'pcs', qty: 1, list: 4.13, discount: 20, image: 'https://planec.com.kh/wp-content/uploads/2021/04/softing-tools-200x200.png' },
   { id: 5, brand: 'Siemon', cat: 'Structured cabling', partNo: 'PC6-002M-A06LS', name: 'Copper Patch Cord, RJ45, RJ45, Category 6, UTP, T568A/B, Stranded, LSOH-1, Blue Cable, Blue Boot, 2 Meter, 24 AWG', description: 'Cat6 stranded LSOH patch cord, 2 m, blue.', unit: 'pcs', qty: 1, list: 4.90, discount: 20, image: 'https://planec.com.kh/wp-content/uploads/2020/03/Wireless-LAN-e1584177128469.jpg' },
   { id: 6, brand: 'Siemon', cat: 'Structured cabling', partNo: 'PC6-005M-A06LS', name: 'Copper Patch Cord, RJ45, RJ45, Category 6, UTP, T568A/B, Stranded, LSOH-1, Blue Cable, Blue Boot, 5 Meter, 24 AWG', description: 'Cat6 stranded LSOH patch cord, 5 m, blue.', unit: 'pcs', qty: 1, list: 9.68, discount: 20, image: 'https://planec.com.kh/wp-content/uploads/2019/09/cat6.jpg' },
-  { id: 7, brand: 'Siemon', cat: 'Structured cabling', partNo: 'MX-BFPL-01-82', name: 'Faceplate, Double Layer, British, Single Gang, 1 Opening, MX, Alpine White', description: 'British-style single-gang faceplate, 1 port, Alpine White.', unit: 'pcs', qty: 1, list: 2.43, discount: 20, image: '' },
-  { id: 8, brand: 'Siemon', cat: 'Structured cabling', partNo: 'MX-BFPL-02-82', name: 'Faceplate, Double Layer, British, Single Gang, 2 Opening, MX, Alpine White', description: 'British-style single-gang faceplate, 2 ports, Alpine White.', unit: 'pcs', qty: 1, list: 2.43, discount: 20, image: '' },
-  { id: 9, brand: 'Siemon', cat: 'Structured cabling', partNo: 'U6-H02NS', name: 'Copper Outlet, UltraMAX, UTP, Category 6, RJ45, Hybrid, White, Punch down, T568A/B', description: 'UltraMAX Cat6 RJ45 outlet, punch-down, hybrid white.', unit: 'pcs', qty: 1, list: 5.19, discount: 20, image: '' },
-  { id: 10, brand: 'Siemon', cat: 'Structured cabling', partNo: 'UMAX-TT', name: 'Termination Tool, TurboTool, UltraMAX', description: 'TurboTool for fast, reliable UltraMAX outlet termination.', unit: 'pcs', qty: 1, list: 125.00, discount: 20, image: '' },
+  { id: 7, brand: 'Siemon', cat: 'Structured cabling', partNo: 'MX-BFPL-01-82', name: 'Faceplate, Double Layer, British, Single Gang, 1 Opening, MX, Alpine White', description: 'British-style single-gang faceplate, 1 port, Alpine White.', unit: 'pcs', qty: 1, list: 2.43, discount: 20, image: 'https://planec.com.kh/wp-content/uploads/2020/03/LANmark-OF-UC-PE-e1584264839357.jpg' },
+  { id: 8, brand: 'Siemon', cat: 'Structured cabling', partNo: 'MX-BFPL-02-82', name: 'Faceplate, Double Layer, British, Single Gang, 2 Opening, MX, Alpine White', description: 'British-style single-gang faceplate, 2 ports, Alpine White.', unit: 'pcs', qty: 1, list: 2.43, discount: 20, image: 'https://planec.com.kh/wp-content/uploads/2020/07/N205.627-e1595043901933.jpg' },
+  { id: 9, brand: 'Siemon', cat: 'Structured cabling', partNo: 'U6-H02NS', name: 'Copper Outlet, UltraMAX, UTP, Category 6, RJ45, Hybrid, White, Punch down, T568A/B', description: 'UltraMAX Cat6 RJ45 outlet, punch-down, hybrid white.', unit: 'pcs', qty: 1, list: 5.19, discount: 20, image: 'https://planec.com.kh/wp-content/uploads/2020/02/LANmark_6A_Cable.jpg' },
+  { id: 10, brand: 'Siemon', cat: 'Structured cabling', partNo: 'UMAX-TT', name: 'Termination Tool, TurboTool, UltraMAX', description: 'TurboTool for fast, reliable UltraMAX outlet termination.', unit: 'pcs', qty: 1, list: 125.00, discount: 20, image: 'https://planec.com.kh/wp-content/uploads/2020/02/LANmark-6A-Cable-FFTP.jpg' },
   /* ── Planet ── */
-  { id: 11, brand: 'Planet', cat: 'LAN switches', partNo: 'GS-4210-24T4S', name: '24-Port 10/100/1000T + 4-Port 100/1000X SFP Managed Gigabit Switch', description: 'Layer 2+ managed switch with 24 GbE ports and 4 SFP uplinks.', unit: 'pcs', qty: 1, list: 420.00, discount: 15, image: '' },
-  { id: 12, brand: 'Planet', cat: 'Wireless LAN', partNo: 'WNAP-C3220E', name: 'IEEE 802.11ac 2T2R Wireless Outdoor AP with 5 dBi Dual-Band Antenna', description: 'Dual-band outdoor access point with IP67-rated enclosure.', unit: 'pcs', qty: 1, list: 185.00, discount: 15, image: '' },
-  { id: 13, brand: 'Planet', cat: 'IP telephony', partNo: 'VIP-2140PT', name: '4-Port SIP IP Phone Adapter with PoE, 2 FXS + 2 FXO', description: 'VoIP adapter supporting SIP protocol with PoE power input.', unit: 'pcs', qty: 1, list: 145.00, discount: 15, image: '' },
-  { id: 14, brand: 'Planet', cat: 'Media conversion', partNo: 'FT-802S35', name: 'Fast Ethernet Media Converter, 10/100Base-TX to 100Base-FX, Single-Mode, SC, 35 km', description: '100 Mbps copper-to-fibre media converter, single-mode 35 km.', unit: 'pcs', qty: 1, list: 68.00, discount: 15, image: '' },
+  { id: 11, brand: 'Planet', cat: 'LAN switches', partNo: 'GS-4210-24T4S', name: '24-Port 10/100/1000T + 4-Port 100/1000X SFP Managed Gigabit Switch', description: 'Layer 2+ managed switch with 24 GbE ports and 4 SFP uplinks.', unit: 'pcs', qty: 1, list: 420.00, discount: 15, image: 'https://planec.com.kh/wp-content/uploads/2020/02/box_MGB-Series-e1581840483781.jpg' },
+  { id: 12, brand: 'Planet', cat: 'Wireless LAN', partNo: 'WNAP-C3220E', name: 'IEEE 802.11ac 2T2R Wireless Outdoor AP with 5 dBi Dual-Band Antenna', description: 'Dual-band outdoor access point with IP67-rated enclosure.', unit: 'pcs', qty: 1, list: 185.00, discount: 15, image: 'https://planec.com.kh/wp-content/uploads/2020/02/box_FGSW-2624HPS4v21-e1581834885402.jpg' },
+  { id: 13, brand: 'Planet', cat: 'IP telephony', partNo: 'VIP-2140PT', name: '4-Port SIP IP Phone Adapter with PoE, 2 FXS + 2 FXO', description: 'VoIP adapter supporting SIP protocol with PoE power input.', unit: 'pcs', qty: 1, list: 145.00, discount: 15, image: 'https://planec.com.kh/wp-content/uploads/2020/02/box_VIP-1120PT-e1581842532365.jpg' },
+  { id: 14, brand: 'Planet', cat: 'Media conversion', partNo: 'FT-802S35', name: 'Fast Ethernet Media Converter, 10/100Base-TX to 100Base-FX, Single-Mode, SC, 35 km', description: '100 Mbps copper-to-fibre media converter, single-mode 35 km.', unit: 'pcs', qty: 1, list: 68.00, discount: 15, image: 'https://planec.com.kh/wp-content/uploads/2020/03/box_GSW-2620HP-e1584173837257.jpg' },
   /* ── Tyco ── */
   { id: 15, brand: 'Tyco', cat: 'Security', partNo: 'T-REX-2W', name: 'T-Rex Dual Technology PIR & Microwave Motion Detector, 12 m × 12 m', description: 'Indoor dual-tech detector with anti-masking, 12 × 12 m coverage.', unit: 'pcs', qty: 1, list: 58.00, discount: 18, image: 'https://planec.com.kh/wp-content/uploads/2020/02/box_VIP-1120PT-e1581842532365.jpg' },
   { id: 16, brand: 'Tyco', cat: 'Security', partNo: 'DS-150i', name: 'Hardwire Door/Window Contact with LED Indicator, Surface Mount, White', description: 'Surface-mount magnetic contact with built-in LED status indicator.', unit: 'pcs', qty: 1, list: 12.50, discount: 18, image: 'https://planec.com.kh/wp-content/uploads/2020/02/box_WDAP-C7200E-e1581841599837.jpg' },
@@ -464,19 +464,19 @@ const staticProducts = [
   /* ── Kantech ── */
   { id: 18, brand: 'Kantech', cat: 'Access control', partNo: 'E3-DOOR', name: 'Kantech E3 Door Controller with IP Connectivity and 5,000 Card Capacity', description: 'Single-door IP controller, 5 000-card onboard memory, PoE-compatible.', unit: 'pcs', qty: 1, list: 380.00, discount: 12, image: 'https://planec.com.kh/wp-content/uploads/2020/03/box_GT-90X-e1584261168227.jpg' },
   /* ── Nittan ── */
-  { id: 19, brand: 'Nittan', cat: 'Fire detection', partNo: 'EV-C', name: 'Evolution Analogue Addressable Optical Smoke Detector', description: 'Addressable optical detector for early warning smoke detection.', unit: 'pcs', qty: 1, list: 35.00, discount: 15, image: '' },
+  { id: 19, brand: 'Nittan', cat: 'Fire detection', partNo: 'EV-C', name: 'Evolution Analogue Addressable Optical Smoke Detector', description: 'Addressable optical detector for early warning smoke detection.', unit: 'pcs', qty: 1, list: 35.00, discount: 15, image: 'https://planec.com.kh/wp-content/uploads/2020/02/box_XGS3-42000Rv2-e1581221463218.jpg' },
   /* ── Nexans ── */
   { id: 20, brand: 'Nexans', cat: 'Structured cabling', partNo: 'LANmark-7A', name: 'LANmark-7A 10G Category 7A LSZH Installation Cable, 500 m Drum', description: 'Cat7A LSZH screened installation cable for 10G backbone runs.', unit: 'Box', qty: 1, list: 420.00, discount: 18, image: 'https://planec.com.kh/wp-content/uploads/2020/03/box_GST-80X-e1584180887714.jpg' },
   /* ── Simplex ── */
   { id: 21, brand: 'Simplex', cat: 'Fire alarm', partNo: '4904-9101', name: 'TrueAlert ES Notification Appliance, Ceiling, Red, 24 V, Speaker/Strobe', description: 'Addressable speaker-strobe notification appliance, ceiling mount, red.', unit: 'pcs', qty: 1, list: 89.00, discount: 15, image: 'https://planec.com.kh/wp-content/uploads/2020/03/box_MC-1610MRv2-e1584178815283.jpg' },
   /* ── Finen ── */
-  { id: 22, brand: 'Finen', cat: 'Network management', partNo: 'FN-SFP-GE-SX', name: 'Gigabit SX SFP Transceiver, 850 nm, LC Duplex, MMF, up to 550 m', description: '1000Base-SX SFP module for multi-mode fibre, 550 m reach.', unit: 'pcs', qty: 1, list: 22.00, discount: 15, image: '' },
+  { id: 22, brand: 'Finen', cat: 'Network management', partNo: 'FN-SFP-GE-SX', name: 'Gigabit SX SFP Transceiver, 850 nm, LC Duplex, MMF, up to 550 m', description: '1000Base-SX SFP module for multi-mode fibre, 550 m reach.', unit: 'pcs', qty: 1, list: 22.00, discount: 15, image: 'https://planec.com.kh/wp-content/uploads/2020/07/LANmark-OF-Zone-Distribution-box-e1595043841694.jpg' },
   /* ── Softing ── */
-  { id: 23, brand: 'Softing', cat: 'Network management', partNo: 'WireXpert-4500', name: 'WireXpert 4500 Cat 8.2 / Class I Network Cable Tester with LCD Display', description: 'Field tester supporting Cat8.2/Class I with colour touchscreen display.', unit: 'pcs', qty: 1, list: 3200.00, discount: 10, image: '' },
+  { id: 23, brand: 'Softing', cat: 'Network management', partNo: 'WireXpert-4500', name: 'WireXpert 4500 Cat 8.2 / Class I Network Cable Tester with LCD Display', description: 'Field tester supporting Cat8.2/Class I with colour touchscreen display.', unit: 'pcs', qty: 1, list: 3200.00, discount: 10, image: 'https://planec.com.kh/wp-content/uploads/2020/07/N205.627-e1595043901933.jpg' },
   /* ── Exacq ── */
-  { id: 24, brand: 'Exacq', cat: 'Security', partNo: 'Z-16-16T-DT', name: 'Exacq Z-Series 16-Channel Desktop NVR with 16 TB Storage', description: '16-channel IP NVR in desktop form factor, 16 TB pre-installed.', unit: 'pcs', qty: 1, list: 1450.00, discount: 12, image: '' },
+  { id: 24, brand: 'Exacq', cat: 'Security', partNo: 'Z-16-16T-DT', name: 'Exacq Z-Series 16-Channel Desktop NVR with 16 TB Storage', description: '16-channel IP NVR in desktop form factor, 16 TB pre-installed.', unit: 'pcs', qty: 1, list: 1450.00, discount: 12, image: 'https://planec.com.kh/wp-content/uploads/2020/07/N122.5LLAX.jpg' },
   /* ── Software House ── */
-  { id: 25, brand: 'Software House', cat: 'Access control', partNo: 'CCURE-9000', name: 'C•CURE 9000 Security and Event Management Platform, Software License', description: 'Enterprise-grade access control and video management platform license.', unit: 'pcs', qty: 1, list: 2800.00, discount: 10, image: '' },
+  { id: 25, brand: 'Software House', cat: 'Access control', partNo: 'CCURE-9000', name: 'C•CURE 9000 Security and Event Management Platform, Software License', description: 'Enterprise-grade access control and video management platform license.', unit: 'pcs', qty: 1, list: 2800.00, discount: 10, image: 'https://planec.com.kh/wp-content/uploads/2020/07/LANmark-OF-Pigtails-Maxistrip.jpg' },
 ]
 
 /* ── Load data ── */
@@ -1278,19 +1278,10 @@ const showToastMsg = (msg) => {
   gap: 2px;
 }
 
-.list-price {
-  font-size: 11px;
-  color: var(--text-faint);
-}
-
-.list-price s {
-  text-decoration: line-through;
-}
-
 .sell-price {
   font-size: 20px;
   font-weight: 700;
-  color: #059669;
+  color: #02798e;
 }
 
 .btn-detail {

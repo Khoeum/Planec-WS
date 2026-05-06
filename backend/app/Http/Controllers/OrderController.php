@@ -6,17 +6,17 @@ use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Http;
 use App\Mail\OrderReceived;
 
 class OrderController extends Controller
 {
     /**
      * POST /api/orders
-     * Called by Vue Shop when customer clicks "Confirm Order"
      */
     public function store(Request $request): JsonResponse
     {
-        // ── 1. Validate ────────────────────────────────────────────
+        // ── 1. VALIDATE ─────────────────────────────
         $validated = $request->validate([
             'firstName'        => 'required|string|max:100',
             'lastName'         => 'required|string|max:100',
@@ -33,33 +33,70 @@ class OrderController extends Controller
             'total'            => 'required|string',
         ]);
 
-        // ── 2. Generate Order ID & Date ────────────────────────────
+        // ── 2. ORDER INFO ───────────────────────────
         $orderId   = 'PLC-' . strtoupper(substr(uniqid(), -6));
         $orderDate = now()->format('F d, Y h:i A');
 
-        // ── 3. Merge everything ────────────────────────────────────
         $orderData = array_merge($validated, [
             'orderId'   => $orderId,
             'orderDate' => $orderDate,
         ]);
 
-        // ── 4. Send email to seller ────────────────────────────────
+        // ── 4. TELEGRAM INVOICE ─────────────────────
         try {
-            $sellerEmail = env('SELLER_EMAIL', 'cpnkhoeumvd030005@gmail.com');
+            $token  = env('TELEGRAM_BOT_TOKEN');
+            $chatId = env('TELEGRAM_CHAT_ID');
 
-            Mail::to($sellerEmail)->send(new OrderReceived($orderData));
+            $message =
+                "🏢 <b>PLANEC ORDER INVOICE</b>\n" .
+                "━━━━━━━━━━━━━━━━━━━━━━\n\n" .
 
-            Log::info('✅ Order email sent', ['orderId' => $orderId]);
+                "🆔 <b>Order ID:</b> <code>#{$orderId}</code>\n" .
+                "📅 <b>Date:</b> {$orderDate}\n\n" .
 
+                "👤 <b>CUSTOMER DETAILS</b>\n" .
+                "━━━━━━━━━━━━━━━━━━━━━━\n" .
+                "• Name      : {$validated['firstName']} {$validated['lastName']}\n" .
+                "• Phone     : {$validated['phone']}\n" .
+                "• Telegram  : {$validated['telegram']}\n" .
+                "• Email     : {$validated['email']}\n" .
+                "• Location  : {$validated['location']}\n\n" .
+
+                "📦 <b>ORDER ITEMS</b>\n" .
+                "━━━━━━━━━━━━━━━━━━━━━━\n";
+
+            foreach ($validated['items'] as $item) {
+                $subtotal = $item['qty'] * $item['price'];
+
+                $message .=
+                    "▫️ <b>{$item['name']}</b>\n" .
+                    "   Qty: {$item['qty']} | $" . number_format($item['price'], 2) .
+                    " | Subtotal: $" . number_format($subtotal, 2) . "\n\n";
+            }
+
+            $message .=
+                "━━━━━━━━━━━━━━━━━━━━━━\n" .
+                "💰 <b>TOTAL:</b> $" . number_format($validated['total'], 2) . "\n" .
+                "━━━━━━━━━━━━━━━━━━━━━━\n\n" .
+
+                "⚡ <b>Status:</b> <i>NEW ORDER RECEIVED</i>\n" .
+                "🤖 <b>System:</b> Vue + Laravel + Telegram API\n";
+
+            Http::post("https://api.telegram.org/bot{$token}/sendMessage", [
+                'chat_id' => $chatId,
+                'text' => $message,
+                'parse_mode' => 'HTML'
+            ]);
+
+            Log::info('Telegram sent', ['orderId' => $orderId]);
         } catch (\Exception $e) {
-            // Don't fail the order if email fails — just log it
-            Log::error('❌ Order email failed', [
+            Log::error('Telegram failed', [
                 'orderId' => $orderId,
                 'error'   => $e->getMessage(),
             ]);
         }
 
-        // ── 5. Return response to Vue ──────────────────────────────
+        // ── 5. RESPONSE ─────────────────────────────
         return response()->json([
             'success'   => true,
             'orderId'   => $orderId,
