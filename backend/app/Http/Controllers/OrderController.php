@@ -4,19 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
-use App\Mail\OrderReceived;
 
 class OrderController extends Controller
 {
-    /**
-     * POST /api/orders
-     */
     public function store(Request $request): JsonResponse
     {
-        // ── 1. VALIDATE ─────────────────────────────
+        // ─────────────────────────────
+        // VALIDATION
+        // ─────────────────────────────
         $validated = $request->validate([
             'firstName'        => 'required|string|max:100',
             'lastName'         => 'required|string|max:100',
@@ -25,83 +22,88 @@ class OrderController extends Controller
             'email'            => 'nullable|email|max:150',
             'location'         => 'required|string|max:500',
             'notes'            => 'nullable|string|max:1000',
+
             'items'            => 'required|array|min:1',
             'items.*.name'     => 'required|string|max:200',
-            'items.*.category' => 'nullable|string|max:100',
             'items.*.qty'      => 'required|integer|min:1',
             'items.*.price'    => 'required|numeric|min:0',
-            'total'            => 'required|string',
+
+            'total'            => 'required|numeric|min:0',
         ]);
 
-        // ── 2. ORDER INFO ───────────────────────────
+        // ─────────────────────────────
+        // ORDER INFO
+        // ─────────────────────────────
         $orderId   = 'PLC-' . strtoupper(substr(uniqid(), -6));
-        $orderDate = now()->format('F d, Y h:i A');
+        $orderDate = now()->format('F d, Y');
 
-        $orderData = array_merge($validated, [
-            'orderId'   => $orderId,
-            'orderDate' => $orderDate,
-        ]);
-
-        // ── 4. TELEGRAM INVOICE ─────────────────────
         try {
+
             $token  = env('TELEGRAM_BOT_TOKEN');
             $chatId = env('TELEGRAM_CHAT_ID');
 
+            $customerName = $validated['firstName'] . ' ' . $validated['lastName'];
+
+            // ─────────────────────────────
+            // MESSAGE BUILD
+            // ─────────────────────────────
             $message =
-                "🏢 <b>PLANEC ORDER INVOICE</b>\n" .
+                "🏢 <b>PLANEC NEW ORDER</b>\n" .
                 "━━━━━━━━━━━━━━━━━━━━━━\n\n" .
 
-                "🆔 <b>Order ID:</b> <code>#{$orderId}</code>\n" .
-                "📅 <b>Date:</b> {$orderDate}\n\n" .
+                "📄 <b>ORDER INFORMATION</b>\n" .
+                "• Order ID : <code>#{$orderId}</code>\n" .
+                "• Date     : {$orderDate}\n\n" .
 
                 "👤 <b>CUSTOMER DETAILS</b>\n" .
-                "━━━━━━━━━━━━━━━━━━━━━━\n" .
-                "• Name      : {$validated['firstName']} {$validated['lastName']}\n" .
-                "• Phone     : {$validated['phone']}\n" .
-                "• Telegram  : {$validated['telegram']}\n" .
-                "• Email     : {$validated['email']}\n" .
-                "• Location  : {$validated['location']}\n\n" .
+                "• Name     : {$customerName}\n" .
+                "• Phone    : {$validated['phone']}\n" .
+                "• Telegram : {$validated['telegram']}\n" .
+                "• Email    : " . ($validated['email'] ?? 'N/A') . "\n" .
+                "• Address  : {$validated['location']}\n\n" .
 
                 "📦 <b>ORDER ITEMS</b>\n" .
                 "━━━━━━━━━━━━━━━━━━━━━━\n";
 
+            // ITEMS LOOP
             foreach ($validated['items'] as $item) {
+
                 $subtotal = $item['qty'] * $item['price'];
 
                 $message .=
-                    "▫️ <b>{$item['name']}</b>\n" .
-                    "   Qty: {$item['qty']} | $" . number_format($item['price'], 2) .
-                    " | Subtotal: $" . number_format($subtotal, 2) . "\n\n";
+                    "🛍 <b>{$item['name']}</b>\n" .
+                    "   Quantity : {$item['qty']}\n" .
+                    "   Price    : $" . number_format($item['price'], 2) . "\n" .
+                    "   Subtotal : $" . number_format($subtotal, 2) . "\n\n";
             }
 
+            // TOTAL
             $message .=
                 "━━━━━━━━━━━━━━━━━━━━━━\n" .
-                "💰 <b>TOTAL:</b> $" . number_format($validated['total'], 2) . "\n" .
-                "━━━━━━━━━━━━━━━━━━━━━━\n\n" .
+                "💰 <b>TOTAL AMOUNT :</b> $" . number_format($validated['total'], 2) . "\n" .
+                "━━━━━━━━━━━━━━━━━━━━━━";
 
-                "⚡ <b>Status:</b> <i>NEW ORDER RECEIVED</i>\n" .
-                "🤖 <b>System:</b> Vue + Laravel + Telegram API\n";
-
+            // SEND TO TELEGRAM
             Http::post("https://api.telegram.org/bot{$token}/sendMessage", [
-                'chat_id' => $chatId,
-                'text' => $message,
+                'chat_id'    => $chatId,
+                'text'       => $message,
                 'parse_mode' => 'HTML'
             ]);
 
-            Log::info('Telegram sent', ['orderId' => $orderId]);
+            Log::info('Order sent', ['orderId' => $orderId]);
         } catch (\Exception $e) {
+
             Log::error('Telegram failed', [
                 'orderId' => $orderId,
                 'error'   => $e->getMessage(),
             ]);
         }
 
-        // ── 5. RESPONSE ─────────────────────────────
         return response()->json([
             'success'   => true,
             'orderId'   => $orderId,
             'orderDate' => $orderDate,
-            'message'   => 'Order placed successfully!',
+            'message'   => 'Order received successfully',
         ], 201);
     }
 }
